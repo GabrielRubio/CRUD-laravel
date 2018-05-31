@@ -10,7 +10,9 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        return view('usuarios.lista');
+        $usuarios = User::get();
+
+        return view('usuarios.lista', ['usuarios' => $usuarios]);
     }
 
     public function novo()

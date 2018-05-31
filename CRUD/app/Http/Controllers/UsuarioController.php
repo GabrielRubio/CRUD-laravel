@@ -10,7 +10,7 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios = User::get();
+        $usuarios = User::paginate(5);
 
         return view('usuarios.lista', ['usuarios' => $usuarios]);
     }

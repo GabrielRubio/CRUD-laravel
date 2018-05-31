@@ -12,8 +12,9 @@
 */
 
 
-Route::get('/usuarios', 'UsuarioController@index');
-Route::get('/usuarios/novo', 'UsuarioController@novo');
+Route::get('usuarios', 'UsuarioController@index');
+Route::get('usuarios/novo', 'UsuarioController@novo');
+Route::post('usuarios/salvar', 'UsuarioController@salvar');
 
 Route::get('/', 'HomeController@index');
 

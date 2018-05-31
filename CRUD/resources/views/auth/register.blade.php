@@ -61,6 +61,35 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
+                            <label for="cpf" class="col-md-4 control-label">CPF</label>
+
+                            <div class="col-md-6">
+                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}" required autofocus>
+
+                                @if ($errors->has('cpf'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cpf') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+                            <label for="birth_date" class="col-md-4 control-label">Data de Nascimento</label>
+
+                            <div class="col-md-6">
+                                <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <input type="hidden" id="activate" name="activate" value="1">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -68,6 +97,7 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Listagem de Usuários
-                        <a class="pull-right" href="{{ url('usuario/novo') }}">Novo Usuário</a>
+                        <a class="pull-right" href="{{ url('usuarios/novo') }}">Novo Usuário</a>
                     </div>
 
                     <div class="panel-body">

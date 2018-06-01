@@ -42,11 +42,28 @@ class UsuarioController extends Controller
 
     public function atualizar($id, Request $request)
     {
+        $button = $request->button;
+        $activate = $request->activate;
+
+        //Buscando o usuario no banco de dados
         $usuario = User::findOrFail($id);
 
-        $usuario->update($request->all());
 
-        \Session::flash('mensagem_sucesso', 'Usuário atualizado com sucesso!');
+        if ($button == 'Editar'){ //caso seja requisitado edicao
+            $usuario->update($request->all());
+
+            \Session::flash('mensagem_sucesso', 'Usuário atualizado com sucesso!');
+
+        }else{
+            if($activate == '1'){ //caso seja requisitado desativacao
+                $usuario->update(['activate'=>'0']);
+                \Session::flash('mensagem_sucesso', 'Usuário desativado com sucesso!');
+            }else{ //caso seja requisitado ativacao
+                $usuario->update(['activate'=>'1']);
+                \Session::flash('mensagem_sucesso', 'Usuário ativado com sucesso!');
+            }
+
+        }
 
         return Redirect::to('usuarios/'.$usuario->id.'/detalhes');
     }

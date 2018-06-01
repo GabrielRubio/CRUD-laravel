@@ -38,10 +38,23 @@
                             {!! Form::label('birth_date','Data de Nascimento') !!}
                             {!! Form::input('date', 'birth_date', null, ['class' => 'form-control', 'autofocus', 'placeholder']) !!}
 
-                            {!! Form::hidden('activate', 1) !!}
+                            @if($usuario->activate == '1')
+                                {!! Form::label('activate','Conta Ativado') !!}
+                            @else
+                                {!! Form::label('activate','Conta Desativada') !!}
+                            @endif
 
-                            {!! Form::submit('Editar', ['class'=>'btn btn-primary']) !!}
-                            {!! Form::submit('Desativar', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::hidden('activate', $usuario->activate) !!}
+                            <br>
+
+                            {!! Form::submit('Editar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}
+
+                            @if($usuario->activate == '1')
+                                {!! Form::submit('Desativar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}
+                            @else
+                                {!! Form::submit('Ativar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}
+                            @endif
+
 
                             {!! Form::close() !!}
                     </div>

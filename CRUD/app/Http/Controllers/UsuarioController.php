@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
+    //numero de usuarias por pagina
+    private $totalPage = 5;
+
     public function index()
     {
 
         $usuarios = User::where('activate','=','1');
-        $usuarios = $usuarios->paginate(5);
+        $usuarios = $usuarios->paginate($this->totalPage);
 
         return view('usuarios.lista', ['usuarios' => $usuarios]);
     }
@@ -22,18 +25,6 @@ class UsuarioController extends Controller
         return view('usuarios.formulario');
     }
 
-    public function salvar(Request $request)
-    {
-        $usuario = new User();
-
-        $usuario = $usuario->create($request->all());
-
-
-        \Session::flash('mensagem_sucesso', 'Usuário cadastrado com sucesso!');
-
-        return Redirect::to('usuarios/novo');
-
-    }
 
     public function detalhes($id)
     {
@@ -72,18 +63,27 @@ class UsuarioController extends Controller
 
     public function search(Request $request)
     {
-        $dataForm = $request->all();
+        $usuarios = User::where('activate', '=', '1');
 
-//        $hist = User->where( function($query) use ($dataForm) {
-//            if (isset($dataForm['name']))
-//                $query->where('name', $dataForm['name']);
-//            if (isset($dataForm['email']))
-//                $query->where('email', $dataForm['email']);
-//            if (isset($dataForm['cpf']))
-//                $query->where('cpf', $dataForm['cpf']);
-//        })->toSql();
-//        dd($hist);
+        //pesquisa pelo nome
+        if ($request->name != null) {
+            $usuarios = $usuarios->where('name','like','%'.$request->name.'%');
+        }
 
+        //pesquisa pelo email
+        if ($request->email != null) {
+            $usuarios = $usuarios->where('email','like','%'.$request->email.'%');
+        }
+
+        //pesquisa pelo cpf
+        if ($request->cpf != null ) {
+            $usuarios = $usuarios->where('cpf','like','%'.$request->cpf.'%');
+        }
+
+        //paginacao
+        $usuarios = $usuarios->paginate($this->totalPage);
+
+        return view('usuarios.lista', ['usuarios' => $usuarios]);
 
     }
 

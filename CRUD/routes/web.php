@@ -19,7 +19,7 @@ Route::patch('usuarios/{usuario}/detalhes', 'UsuarioController@atualizar');
 
 
 Route::get('usuarios/novo', 'UsuarioController@novo');
-Route::post('usuarios/salvar', 'UsuarioController@salvar');
+
 
 Route::get('/', 'HomeController@index');
 

@@ -7,15 +7,22 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Listagem de Usuários
-                        <form action="{{ route('usuarios.search') }}" method="POST" class="form form-inline">
-                            {!! csrf_field() !!}
-                            <input type="text" name="name" class="form-control" placeholder="Nome">
-                            <input type="text" name="email" class="form-control" placeholder="Email">
-                            <input type="text" name="cpf" class="form-control" placeholder="CPF">
+                        {{--<form action="{{ route('usuarios.search') }}" method="POST" class="form form-inline">--}}
+                            {{--{!! csrf_field() !!}--}}
+                            {{--<input type="text" name="name" class="form-control" placeholder="Nome">--}}
+                            {{--<input type="text" name="email" class="form-control" placeholder="Email">--}}
+                            {{--<input type="text" name="cpf" class="form-control" placeholder="CPF">--}}
 
-                            <button type="submit" class="btn btn-primary">Pesquisar</button>
-                        </form>
+                            {{--<button type="submit" class="btn btn-primary">Pesquisar</button>--}}
+                        {{--</form>--}}
+                        {!! Form::model('', ['method'=>'POST', 'url'=> 'usuarios', 'class'=>'form form-inline']) !!}
 
+                        {!! Form::input('string', 'name', null,['class'=>'form-control', 'placeholder'=>'Nome']) !!}
+                        {!! Form::input('string', 'email', null,['class'=>'form-control', 'placeholder'=>'Email']) !!}
+                        {!! Form::input('string', 'cpf', null,['class'=>'form-control', 'placeholder'=>'CPF']) !!}
+
+                        {!! Form::submit('Pesquisar',['class'=>'btn btn-primary']) !!}
+                        {!! Form::close() !!}
                     </div>
 
                     <div class="panel-body">

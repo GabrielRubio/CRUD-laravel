@@ -15,6 +15,9 @@
 Route::get('usuarios', 'UsuarioController@index');
 Route::post('usuarios', 'UsuarioController@search')->name('usuarios.search');
 Route::get('usuarios/{usuario}/detalhes', 'UsuarioController@detalhes');
+Route::patch('usuarios/{usuario}/detalhes', 'UsuarioController@atualizar');
+
+
 Route::get('usuarios/novo', 'UsuarioController@novo');
 Route::post('usuarios/salvar', 'UsuarioController@salvar');
 

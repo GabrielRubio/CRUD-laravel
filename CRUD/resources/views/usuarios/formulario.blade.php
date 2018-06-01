@@ -24,7 +24,7 @@
                             @endif
 
 
-                            {!! Form::model($usuario, ['method' => 'PATCH', 'url' => 'usuario/atualizar']) !!}
+                            {!! Form::model($usuario, ['method' => 'PATCH', 'url' => 'usuarios/'.$usuario->id.'/detalhes']) !!}
 
                             {!! Form::label('nome','Nome') !!}
                             {!! Form::input('string', 'name', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Name']) !!}

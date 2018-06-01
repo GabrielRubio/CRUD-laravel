@@ -40,11 +40,15 @@ class UsuarioController extends Controller
         return view('usuarios.formulario', ['usuario' => $usuario]);
     }
 
-    public function editar($id)
+    public function atualizar($id, Request $request)
     {
         $usuario = User::findOrFail($id);
 
-        return view('usuarios/formulario');
+        $usuario->update($request->all());
+
+        \Session::flash('mensagem_sucesso', 'Usuário atualizado com sucesso!');
+
+        return Redirect::to('usuarios/'.$usuario->id.'/detalhes');
     }
 
     public function search(Request $request)

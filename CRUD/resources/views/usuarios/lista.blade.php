@@ -3,10 +3,19 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-9 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Listagem de Usuários
+                        <form action="{{ route('usuarios.search') }}" method="POST" class="form form-inline">
+                            {!! csrf_field() !!}
+                            <input type="text" name="name" class="form-control" placeholder="Nome">
+                            <input type="text" name="email" class="form-control" placeholder="Email">
+                            <input type="text" name="cpf" class="form-control" placeholder="CPF">
+
+                            <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        </form>
+
                     </div>
 
                     <div class="panel-body">

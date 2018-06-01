@@ -33,5 +33,36 @@ class UsuarioController extends Controller
 
     }
 
+    public function detalhes($id)
+    {
+        $usuario = User::findOrFail($id);
+
+        return view('usuarios.formulario', ['usuario' => $usuario]);
+    }
+
+    public function editar($id)
+    {
+        $usuario = User::findOrFail($id);
+
+        return view('usuarios/formulario');
+    }
+
+    public function search(Request $request)
+    {
+        $dataForm = $request->all();
+
+//        $hist = User->where( function($query) use ($dataForm) {
+//            if (isset($dataForm['name']))
+//                $query->where('name', $dataForm['name']);
+//            if (isset($dataForm['email']))
+//                $query->where('email', $dataForm['email']);
+//            if (isset($dataForm['cpf']))
+//                $query->where('cpf', $dataForm['cpf']);
+//        })->toSql();
+//        dd($hist);
+
+
+    }
+
 
 }

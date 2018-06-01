@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    aquiiiii
+                    Bem vindo ao CRUD!!
                 </div>
             </div>
         </div>

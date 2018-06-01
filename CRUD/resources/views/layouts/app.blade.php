@@ -38,6 +38,7 @@
                     <ul class="nav navbar-nav">
                         @auth
                             <li><a href="{{ url('usuarios') }}">Listagem</a></li>
+                            <li><a href="usuarios/{{ Auth::user()->id }}/detalhes" >Detalhes</a></li>
                         @endauth
                     </ul>
 

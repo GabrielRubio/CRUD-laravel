@@ -13,6 +13,8 @@
 
 
 Route::get('usuarios', 'UsuarioController@index');
+Route::post('usuarios', 'UsuarioController@search')->name('usuarios.search');
+Route::get('usuarios/{usuario}/detalhes', 'UsuarioController@detalhes');
 Route::get('usuarios/novo', 'UsuarioController@novo');
 Route::post('usuarios/salvar', 'UsuarioController@salvar');
 

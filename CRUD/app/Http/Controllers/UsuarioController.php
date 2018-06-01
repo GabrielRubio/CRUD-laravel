@@ -10,7 +10,9 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        $usuarios = User::paginate(5);
+
+        $usuarios = User::where('activate','=','1');
+        $usuarios = $usuarios->paginate(5);
 
         return view('usuarios.lista', ['usuarios' => $usuarios]);
     }

@@ -13,16 +13,12 @@
 
 
 Route::get('usuarios', 'UsuarioController@index');
-Route::post('usuarios', 'UsuarioController@search')->name('usuarios.search');
-Route::get('usuarios/{usuario}/detalhes', 'UsuarioController@detalhes');
-Route::patch('usuarios/{usuario}/detalhes', 'UsuarioController@atualizar');
-
-
-Route::get('usuarios/novo', 'UsuarioController@novo');
-
 
 Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('usuarios', 'UsuarioController@search')->name('usuarios.search');
+Route::get('usuarios/{usuario}/detalhes', 'UsuarioController@detalhes');
+Route::patch('usuarios/{usuario}/detalhes', 'UsuarioController@atualizar');

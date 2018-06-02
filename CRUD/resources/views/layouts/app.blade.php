@@ -46,7 +46,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         @auth
-                            <img src="{{ url('storage/photo/original/'.Auth::user()->photo) }}" alt="{{ Auth::user()->name }}" class="nav navbar-nav navbar-left" style="max-width: 30px">
+                            <img src="{{ url('storage/photo/original/'.Auth::user()->photo) }}" alt="{{ Auth::user()->name }}" class="nav navbar-nav navbar-left" style="max-width: 30px; max-height: 30px; margin-top: 10px; float: left">
                         @endauth
 
                         <!-- Authentication Links -->

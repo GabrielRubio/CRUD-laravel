@@ -23,19 +23,17 @@
                                 <div class="alert alert-success">{{ Session::get('mensagem_sucesso') }}</div>
                             @endif
 
+                            {!! Form::image(url('storage/photo/original/'.$usuario->photo), $usuario->name,['class' => 'img-responsive center-block', 'style' => 'max-width: 120px'] ) !!}
 
                             {!! Form::model($usuario, ['method' => 'PATCH', 'url' => 'usuarios/'.$usuario->id.'/detalhes']) !!}
 
-                            {!! Form::image(url('storage/photo/original/'.$usuario->photo), $usuario->name,['class' => 'img-responsive center-block', 'style' => 'max-width: 120px'] ) !!}
                             <br>
+
                             {!! Form::label('nome','Nome') !!}
                             {!! Form::input('string', 'name', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Name']) !!}
 
                             {!! Form::label('email','Email') !!}
                             {!! Form::input('string', 'email', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Email']) !!}
-
-                            {!! Form::label('cpf','CPF') !!}
-                            {!! Form::input('string', 'cpf', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'CPF']) !!}
 
                             {!! Form::label('birth_date','Data de Nascimento') !!}
                             {!! Form::input('date', 'birth_date', null, ['class' => 'form-control', 'autofocus', 'placeholder']) !!}

@@ -7,14 +7,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Listagem de Usuários
-                        {{--<form action="{{ route('usuarios.search') }}" method="POST" class="form form-inline">--}}
-                            {{--{!! csrf_field() !!}--}}
-                            {{--<input type="text" name="name" class="form-control" placeholder="Nome">--}}
-                            {{--<input type="text" name="email" class="form-control" placeholder="Email">--}}
-                            {{--<input type="text" name="cpf" class="form-control" placeholder="CPF">--}}
-
-                            {{--<button type="submit" class="btn btn-primary">Pesquisar</button>--}}
-                        {{--</form>--}}
                         {!! Form::model('', ['method'=>'POST', 'url'=> 'usuarios', 'class'=>'form form-inline']) !!}
 
                         {!! Form::input('string', 'name', null,['class'=>'form-control', 'placeholder'=>'Nome']) !!}
@@ -27,6 +19,7 @@
 
                     <div class="panel-body">
                         <table class="table">
+                            <th>Foto</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Data Nascimento</th>
@@ -34,6 +27,7 @@
                             <tbody>
                                 @foreach($usuarios as $usuario)
                                 <tr>
+                                    <td><img src="{{ url('storage/photo/original/'.$usuario->photo) }}" alt="{{ $usuario->name }}" class="img-responsive center-block" style="max-width: 25px"></td>
                                     <td>{{$usuario->name}}</td>
                                     <td>{{$usuario->email}}</td>
                                     <td>{{$usuario->birth_date}}</td>

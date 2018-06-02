@@ -26,6 +26,8 @@
 
                             {!! Form::model($usuario, ['method' => 'PATCH', 'url' => 'usuarios/'.$usuario->id.'/detalhes']) !!}
 
+                            {!! Form::image(url('storage/photo/original/'.$usuario->photo), $usuario->name,['class' => 'img-responsive center-block', 'style' => 'max-width: 120px'] ) !!}
+                            <br>
                             {!! Form::label('nome','Nome') !!}
                             {!! Form::input('string', 'name', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Name']) !!}
 

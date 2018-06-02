@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('cpf')->unique();
             $table->date('birth_date');
             $table->boolean('activate');
+            $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

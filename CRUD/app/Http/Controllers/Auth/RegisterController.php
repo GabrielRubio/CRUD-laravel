@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -51,7 +52,8 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'cpf' => 'required|formato_cpf'
+            'cpf' => 'required|formato_cpf',
+            'photo' => 'required'
         ]);
     }
 
@@ -63,6 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $file = $data['photo'];
+        $path = 'photo/original/';
+        $filename = 'user_'. rand(1111,9999) . '.' . $file->getClientOriginalExtension();
+
+        Storage::putFileAs($path, $data['photo'], $filename);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -70,6 +79,8 @@ class RegisterController extends Controller
             'cpf' => $data['cpf'],
             'birth_date' => $data['birth_date'],
             'activate' => $data['activate'],
+            'photo' => $filename
         ]);
+
     }
 }

@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Listagem de Usuários
-                        {!! Form::model('', ['method'=>'POST', 'url'=> 'usuarios', 'class'=>'form form-inline']) !!}
+                        {!! Form::model('', ['method'=>'POST', 'url'=> 'list', 'class'=>'form form-inline']) !!}
 
                         {!! Form::input('string', 'name', null,['class'=>'form-control', 'placeholder'=>'Nome']) !!}
                         {!! Form::input('string', 'email', null,['class'=>'form-control', 'placeholder'=>'Email']) !!}
@@ -25,18 +25,18 @@
                             <th>Data Nascimento</th>
                             <th>CPF</th>
                             <tbody>
-                                @foreach($usuarios as $usuario)
+                                @foreach($users as $user)
                                 <tr>
-                                    <td><img src="{{ url('storage/photo/original/'.$usuario->photo) }}" alt="{{ $usuario->name }}" class="img-responsive center-block" style="max-width: 25px"></td>
-                                    <td>{{$usuario->name}}</td>
-                                    <td>{{$usuario->email}}</td>
-                                    <td>{{$usuario->birth_date}}</td>
-                                    <td>{{$usuario->cpf}}</td>
+                                    <td><img src="{{ url('storage/photo/original/'.$user->photo) }}" alt="{{ $user->name }}" class="img-responsive center-block" style="max-width: 25px"></td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->birth_date}}</td>
+                                    <td>{{$user->cpf}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {!!   $usuarios->links() !!}
+                        {!!   $users->links() !!}
                     </div>
                 </div>
             </div>

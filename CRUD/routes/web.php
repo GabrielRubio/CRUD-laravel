@@ -10,15 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('usuarios', 'UsuarioController@index');
-
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index');
+
+
+Route::get('list', 'UsuarioController@list');
+Route::post('list', 'UsuarioController@search')->name('list.search');
+
+
+Route::get('list/{user}/details', 'UsuarioController@details');
+Route::patch('list/{user}/details', 'UsuarioController@update');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('usuarios', 'UsuarioController@search')->name('usuarios.search');
-Route::get('usuarios/{usuario}/detalhes', 'UsuarioController@detalhes');
-Route::patch('usuarios/{usuario}/detalhes', 'UsuarioController@atualizar');
+

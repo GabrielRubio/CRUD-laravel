@@ -37,8 +37,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @auth
-                            <li><a href="{{ url('usuarios') }}">Listagem</a></li>
-                            <li><a href="usuarios/{{ Auth::user()->id }}/detalhes" >Detalhes</a></li>
+                            <li><a href="{{ url('list') }}">Listagem</a></li>
+                            <li><a href="list/{{ Auth::user()->id }}/details" >Detalhes</a></li>
                         @endauth
                     </ul>
 
@@ -51,8 +51,8 @@
 
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Entrar</a></li>
+                            <li><a href="{{ route('register') }}">Registrar</a></li>
                         @else
 
 
@@ -66,7 +66,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Sair
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

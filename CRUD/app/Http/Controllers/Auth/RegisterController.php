@@ -66,10 +66,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        //saving the photo to a folder
         $file = $data['photo'];
         $path = 'photo/original/';
         $filename = 'user_'. rand(1111,9999) . '.' . $file->getClientOriginalExtension();
-
         Storage::putFileAs($path, $data['photo'], $filename);
 
         return User::create([

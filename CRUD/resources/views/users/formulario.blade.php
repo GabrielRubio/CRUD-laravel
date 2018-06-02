@@ -23,9 +23,9 @@
                                 <div class="alert alert-success">{{ Session::get('mensagem_sucesso') }}</div>
                             @endif
 
-                            {!! Form::image(url('storage/photo/original/'.$usuario->photo), $usuario->name,['class' => 'img-responsive center-block', 'style' => 'max-width: 120px'] ) !!}
+                            {!! Form::image(url('storage/photo/original/'.$user->photo), $user->name,['class' => 'img-responsive center-block', 'style' => 'max-width: 120px'] ) !!}
 
-                            {!! Form::model($usuario, ['method' => 'PATCH', 'url' => 'usuarios/'.$usuario->id.'/detalhes']) !!}
+                            {!! Form::model($user, ['method' => 'PATCH', 'url' => 'list/'.$user->id.'/details']) !!}
 
                             <br>
 
@@ -38,18 +38,18 @@
                             {!! Form::label('birth_date','Data de Nascimento') !!}
                             {!! Form::input('date', 'birth_date', null, ['class' => 'form-control', 'autofocus', 'placeholder']) !!}
 
-                            @if($usuario->activate == '1')
+                            @if($user->activate == '1')
                                 {!! Form::label('activate','Conta Ativado') !!}
                             @else
                                 {!! Form::label('activate','Conta Desativada') !!}
                             @endif
 
-                            {!! Form::hidden('activate', $usuario->activate) !!}
+                            {!! Form::hidden('activate', $user->activate) !!}
                             <br>
 
                             {!! Form::submit('Editar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}
 
-                            @if($usuario->activate == '1')
+                            @if($user->activate == '1')
                                 {!! Form::submit('Desativar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}
                             @else
                                 {!! Form::submit('Ativar', ['name' => 'button', 'class'=>'btn btn-primary']) !!}

@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
+
+    /**
+     * Variable to set how many users per page.
+     *
+     * @var integer
+     */
+    private $totalPage = 5;
+
+
     /**
      * Create a new controller instance.
      *
@@ -18,82 +27,99 @@ class UsuarioController extends Controller
         $this->middleware('auth');
     }
 
-    //numero de usuarias por pagina
-    private $totalPage = 5;
 
-    public function index()
+    /**
+     * Show the application users's list.
+     *
+     * @return view \users\list
+     */
+    public function list()
     {
 
-        $usuarios = User::where('activate','=','1');
-        $usuarios = $usuarios->paginate($this->totalPage);
+        $users = User::where('activate','=','1');
+        $users = $users->paginate($this->totalPage);
 
-        return view('usuarios.lista', ['usuarios' => $usuarios]);
+        return view('users.list', ['users' => $users]);
     }
 
-    public function novo()
+    /**
+     * Show the application user's details.
+     *
+     * @param $id user's id
+     * @return view \users\details
+     */
+    public function details($id)
     {
-        return view('usuarios.formulario');
+        $user = User::findOrFail($id);
+
+        return view('users.formulario', ['user' => $user]);
     }
 
 
-    public function detalhes($id)
-    {
-        $usuario = User::findOrFail($id);
-
-        return view('usuarios.formulario', ['usuario' => $usuario]);
-    }
-
-    public function atualizar($id, Request $request)
+    /**
+     * Update user's details.
+     *
+     * @param $id user's id
+     * @param $request
+     * @return redirect list/{id}/details
+     */
+    public function update($id, Request $request)
     {
         $button = $request->button;
         $activate = $request->activate;
 
-        //Buscando o usuario no banco de dados
-        $usuario = User::findOrFail($id);
+        //searching user in DB
+        $user = User::findOrFail($id);
 
 
-        if ($button == 'Editar'){ //caso seja requisitado edicao
-            $usuario->update($request->all());
+        if ($button == 'Editar'){   //if editing is necessary
+            $user->update($request->all());
 
             \Session::flash('mensagem_sucesso', 'Usuário atualizado com sucesso!');
 
         }else{
-            if($activate == '1'){ //caso seja requisitado desativacao
-                $usuario->update(['activate'=>'0']);
+            if($activate == '1'){   //if requested to deactivate
+                $user->update(['activate'=>'0']);
                 \Session::flash('mensagem_sucesso', 'Usuário desativado com sucesso!');
-            }else{ //caso seja requisitado ativacao
-                $usuario->update(['activate'=>'1']);
+            }else{                  //if requested to activate
+                $user->update(['activate'=>'1']);
                 \Session::flash('mensagem_sucesso', 'Usuário ativado com sucesso!');
             }
 
         }
 
-        return Redirect::to('usuarios/'.$usuario->id.'/detalhes');
+        return Redirect::to('list/'.$user->id.'/details');
     }
 
+    /**
+     * Search users in database.
+     *
+     * @param $request
+     * @return view users/list
+     */
     public function search(Request $request)
     {
-        $usuarios = User::where('activate', '=', '1');
+        $users = User::where('activate', '=', '1');
 
-        //pesquisa pelo nome
+        //search by name
         if ($request->name != null) {
-            $usuarios = $usuarios->where('name','like','%'.$request->name.'%');
+            $users = $users->where('name','like','%'.$request->name.'%');
         }
 
-        //pesquisa pelo email
+        //search by email
         if ($request->email != null) {
-            $usuarios = $usuarios->where('email','like','%'.$request->email.'%');
+            $users = $users->where('email','like','%'.$request->email.'%');
         }
 
-        //pesquisa pelo cpf
+        //search by cpf
         if ($request->cpf != null ) {
-            $usuarios = $usuarios->where('cpf','like','%'.$request->cpf.'%');
+            $users = $users->where('cpf','like','%'.$request->cpf.'%');
         }
 
-        //paginacao
-        $usuarios = $usuarios->paginate($this->totalPage);
+        //pagination
+        $users = $users->paginate($this->totalPage);
 
-        return view('usuarios.lista', ['usuarios' => $usuarios]);
+        return view('users.list', ['users' => $users]);
 
     }
 
